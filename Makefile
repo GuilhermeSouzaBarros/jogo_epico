@@ -7,19 +7,19 @@ OBJS = $(SRCS:cpp/%.cpp=o/%.o)
 
 .PHONY: all clean
 
-all: jogo_epico
+all: o/ jogo_epico
 
 jogo_epico: $(OBJS)
 	$(CC) $(LDFLAGS) $^ -o $@ -lm -lraylib
 
+o/main.o: cpp/main.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
+
+o/%.o: cpp/%.cpp hpp/%.hpp
+	$(CC) $(CFLAGS) -c $< -o $@
+
 o/:
-	mkdir o/
-
-o/main.o: cpp/main.cpp o/
-	$(CC) $(CFLAGS) -c $< -o $@
-
-o/%.o: cpp/%.cpp hpp/%.hpp o/
-	$(CC) $(CFLAGS) -c $< -o $@
+	mkdir $@
 
 clean:	
-	rm -f jogo_epico $(OBJS)
+	rm -rf jogo_epico o/

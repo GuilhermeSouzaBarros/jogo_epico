@@ -13,10 +13,11 @@ namespace map_local {
     class Map {
         public:
             Tile *tiles;
-            Vector2 tile_size;
+            Vector2* p_tile_size;
             int rows, columns;
 
-            Map(int to_rows, int to_columns);
+            Map(int to_rows, int to_columns, Vector2 *p_to_tile_size);
+            void initialize();
             ~Map();
 
             void draw();

@@ -10,13 +10,15 @@
 namespace game{
     class Game {
         public:
+            Vector2 window_size;
+            Vector2 tile_size;
             float tick;
-            player::Player player;
-            map_local::Map map = {15, 31};
+            player::Player player = {&tile_size};
+            map_local::Map map = {15, 31, &tile_size};
 
             int first_frame;
 
-            Game();
+            Game(Vector2 to_window_size);
             void update(float delta_time);
             void draw();
 
